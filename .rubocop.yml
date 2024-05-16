@@ -1,0 +1,25 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - '.git/**/*'
+    - 'bin/*'
+    - 'config/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'config.ru'
+    - 'Rakefile'
+  TargetRubyVersion: 3.3.1
+  SuggestExtensions: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+  # If `true`, strings which span multiple lines using `\` for continuation must
+  # use the same type of quotes on each line.
+  ConsistentQuotesInMultiline: false
