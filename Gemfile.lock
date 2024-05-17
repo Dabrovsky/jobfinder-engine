@@ -78,6 +78,7 @@ GEM
     ast (2.4.2)
     base64 (0.2.0)
     bigdecimal (3.1.8)
+    blueprinter (1.0.2)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -232,6 +233,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  blueprinter
   bootsnap
   debug
   pg (~> 1.1)
