@@ -7,16 +7,27 @@ class JobSerializerTest < ActiveSupport::TestCase
 
   setup do
     @input = {
-      status: "ok"
+      title: "Job title",
+      image: "image_path",
+      company_name: "Company name",
+      category: "Category name",
+      seniority: "Mid",
+      salary: {
+        min: 0,
+        max: 100,
+        currency: "USD"
+      },
+      tags: ["Ruby"],
+      remote: true,
+      entity_url: "some-url",
+      source: "source"
     }
   end
 
   test "correctly serializes object" do
     expected_hash = {
       type: :job,
-      attributes: {
-        status: "ok"
-      }
+      attributes: input
     }
 
     assert_equal expected_hash, JobSerializer.render(input)
@@ -28,15 +39,11 @@ class JobSerializerTest < ActiveSupport::TestCase
     expected_hash = [
       {
         type: :job,
-        attributes: {
-          status: "ok"
-        }
+        attributes: input
       },
       {
         type: :job,
-        attributes: {
-          status: "ok"
-        }
+        attributes: input
       }
     ]
 
@@ -48,9 +55,7 @@ class JobSerializerTest < ActiveSupport::TestCase
 
     expected_hash = {
       type: :job,
-      attributes: {
-        status: "ok"
-      }
+      attributes: input
     }
 
     assert_equal expected_hash, JobSerializer.render(combined_input)

@@ -1,0 +1,27 @@
+{
+  "postings": [
+    {
+      "title": "Job title",
+      "logo": {
+        "jobs_listing_2x": "image_path"
+      },
+      "name": "Company name",
+      "category": "Category name",
+      "seniority": "Mid",
+      "salary": {
+        "from": 0,
+        "to": 100,
+        "currency": "USD"
+      },
+      "tiles": {
+        "values": [
+          {
+            "value": "Ruby"
+          }
+        ]
+      },
+      "fullyRemote": true,
+      "url": "some-url"
+    }
+  ]
+}
