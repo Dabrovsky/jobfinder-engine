@@ -7,9 +7,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resource :jobs, only: %i[] do
-        get :search
-      end
+      resources :jobs, only: %i[index]
     end
   end
 end
