@@ -3,5 +3,5 @@
 class JobSerializer < Serializer
   self.type = :job
 
-  fields :status
+  fields :title, :image, :company_name, :category, :seniority, :salary, :tags, :remote, :entity_url, :source
 end
