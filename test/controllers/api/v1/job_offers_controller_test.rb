@@ -4,14 +4,14 @@ require "test_helper"
 
 module Api
   module V1
-    class JobsControllerTest < ActionDispatch::IntegrationTest
+    class JobOffersControllerTest < ActionDispatch::IntegrationTest
       include MockedDataHelpers
 
       setup do
         stub_nofluffjobs_data
       end
 
-      test "GET api/v1/jobs returns correct response" do
+      test "GET api/v1/job_offers returns correct response" do
         expected_response = {
           title: "Job title",
           image: "https://static.nofluffjobs.com/image_path",
@@ -29,7 +29,7 @@ module Api
           source: "nofluffjobs.com"
         }
 
-        get api_v1_jobs_path
+        get api_v1_job_offers_path
 
         assert_response :success
         assert_equal expected_response, json_response[0][:attributes]

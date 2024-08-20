@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-module Jobs
+module JobOffers
   include CommandHandler
 
   module_function
 
-  # Retrieve a list of jobs
+  # Retrieve a list of job offers
   #
   # @example
-  #   Jobs.fetch(
+  #   JobOffers.fetch(
   #     input: {
   #       currency: "USD",
   #       contracts: ["permanent"],

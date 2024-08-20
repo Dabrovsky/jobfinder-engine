@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-module Jobs
+module JobOffers
   class ListTest < ActiveSupport::TestCase
     include MockedDataHelpers
 
