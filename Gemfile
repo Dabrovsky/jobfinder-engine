@@ -14,6 +14,7 @@ gem "rails", "~> 7.1.3", ">= 7.1.3.3"
 gem "tzinfo-data", platforms: %i[windows jruby]
 
 group :development, :test do
+  gem "annotate"
   gem "debug", platforms: %i[mri windows]
   gem "factory_bot_rails"
   gem "rubocop-rails", require: false
