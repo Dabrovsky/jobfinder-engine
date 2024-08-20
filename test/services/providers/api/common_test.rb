@@ -8,7 +8,7 @@ module Providers
       attr_reader :common, :api_path, :expected_response
 
       setup do
-        @common = Common.new(currency: "USD", contracts: [], technologies: [], seniority: [], keywords: [])
+        @common = Common.new(currency: "USD", technologies: [])
         @api_path = "https://api.example.com/data"
         @expected_response = { test: "test" }
         mock_request

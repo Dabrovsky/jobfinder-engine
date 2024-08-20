@@ -5,14 +5,11 @@ module Providers
     class Common
       FAILED_MESSAGE = "Failed to fetch a response"
 
-      attr_reader :currency, :contracts, :technologies, :seniority, :keywords
+      attr_reader :currency, :technologies
 
-      def initialize(currency:, contracts:, technologies:, seniority:, keywords:)
+      def initialize(currency: "USD", technologies: [])
         @currency = currency
-        @contracts = contracts
         @technologies = technologies
-        @seniority = seniority
-        @keywords = keywords
       end
 
       def fetch_data(api_path, **params)

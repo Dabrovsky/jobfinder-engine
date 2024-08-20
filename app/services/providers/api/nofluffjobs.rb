@@ -6,12 +6,6 @@ module Providers
       SOURCE = "nofluffjobs.com"
       API_PATH = "https://#{SOURCE}/api/search/posting".freeze
       STATIC_PATH = "https://static.#{SOURCE}".freeze
-      CONTRACT_TYPES = {
-        "b2b" => "b2b",
-        "permanent" => "permanent",
-        "mandate" => "zlecenie",
-        "intern" => "intern"
-      }.freeze
 
       def call
         response = fetch_data(API_PATH, body: body_params.to_json, query: query_params)
@@ -26,20 +20,13 @@ module Providers
       def body_params
         {
           criteriaSearch: {
-            employment: mapped_contracts,
-            requirement: technologies,
-            seniority:,
-            keyword: keywords
+            requirement: technologies
           }
         }
       end
 
       def query_params
         { salaryCurrency: currency, salaryPeriod: "month" }
-      end
-
-      def mapped_contracts
-        contracts.map(&CONTRACT_TYPES.method(:[]))
       end
 
       def company_logo(data)

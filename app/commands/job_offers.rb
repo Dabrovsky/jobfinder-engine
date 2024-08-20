@@ -11,10 +11,7 @@ module JobOffers
   #   JobOffers.fetch(
   #     input: {
   #       currency: "USD",
-  #       contracts: ["permanent"],
-  #       technologies: ["ruby"],
-  #       seniority: ["mid"],
-  #       keywords: ["some", "keywords", "here"]
+  #       technologies: ["ruby"]
   #     }
   #   )
   def fetch(input: {})
