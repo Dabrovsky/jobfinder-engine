@@ -2,11 +2,11 @@
 
 module Api
   module V1
-    class JobsController < ApplicationController
+    class JobOffersController < ApplicationController
       def index
-        jobs = Jobs.fetch(input: search_params)
+        job_offers = JobOffers.fetch(input: search_params)
 
-        render json: JobSerializer.render(jobs)
+        render json: JobOfferSerializer.render(job_offers)
       end
 
       private

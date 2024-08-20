@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class JobSerializerTest < ActiveSupport::TestCase
+class JobOfferSerializerTest < ActiveSupport::TestCase
   attr_reader :input
 
   setup do
@@ -26,11 +26,11 @@ class JobSerializerTest < ActiveSupport::TestCase
 
   test "correctly serializes object" do
     expected_hash = {
-      type: :job,
+      type: :job_offer,
       attributes: input
     }
 
-    assert_equal expected_hash, JobSerializer.render(input)
+    assert_equal expected_hash, JobOfferSerializer.render(input)
   end
 
   test "correctly serializes collection" do
@@ -38,26 +38,26 @@ class JobSerializerTest < ActiveSupport::TestCase
 
     expected_hash = [
       {
-        type: :job,
+        type: :job_offer,
         attributes: input
       },
       {
-        type: :job,
+        type: :job_offer,
         attributes: input
       }
     ]
 
-    assert_equal expected_hash, JobSerializer.render(collection)
+    assert_equal expected_hash, JobOfferSerializer.render(collection)
   end
 
   test "correctly serializes only whitelisted fields" do
     combined_input = input.merge(additional_field: "test")
 
     expected_hash = {
-      type: :job,
+      type: :job_offer,
       attributes: input
     }
 
-    assert_equal expected_hash, JobSerializer.render(combined_input)
+    assert_equal expected_hash, JobOfferSerializer.render(combined_input)
   end
 end

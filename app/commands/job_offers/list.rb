@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Jobs
+module JobOffers
   class List < Command
     include ActiveData::Model
 
@@ -15,12 +15,12 @@ module Jobs
     attribute :keywords, Array, default: []
 
     def call
-      jobs
+      job_offers
     end
 
     private
 
-    def jobs
+    def job_offers
       providers.map(&:call).flatten
     end
 

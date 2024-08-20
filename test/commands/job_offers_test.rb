@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class JobsTest < ActiveSupport::TestCase
+class JobOffersTest < ActiveSupport::TestCase
   include MockedDataHelpers
 
   setup do
@@ -10,11 +10,11 @@ class JobsTest < ActiveSupport::TestCase
   end
 
   test "CommandHandler is included" do
-    assert_includes Jobs, CommandHandler
+    assert_includes JobOffers, CommandHandler
   end
 
-  test ".fetch returns jobs collection" do
-    output = Jobs.fetch(input: {})
+  test ".fetch returns job_offers collection" do
+    output = JobOffers.fetch(input: {})
 
     assert_instance_of Array, output
   end
