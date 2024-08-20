@@ -42,38 +42,48 @@ module Providers
         contracts.map(&CONTRACT_TYPES.method(:[]))
       end
 
-      def image_url(data)
+      def company_logo(data)
         [STATIC_PATH, data.dig("logo", "jobs_listing_2x")].join("/")
       end
 
-      def salary_details(data)
-        {
-          min: data.dig("salary", "from"),
-          max: data.dig("salary", "to"),
-          currency: data.dig("salary", "currency")
-        }
+      def salary_range(salary)
+        salary_from = salary["from"]
+        salary_to = salary["to"]
+        reutrn unless salary_from.present? || salary_to.present?
+
+        min = ActiveSupport::NumberHelper.number_to_delimited(salary_from.to_i, delimiter: " ")
+        max = ActiveSupport::NumberHelper.number_to_delimited(salary_to.to_i, delimiter: " ")
+
+        [min, max].join(" - ")
       end
 
       def extract_tags(data)
         data.dig("tiles", "values")&.pluck("value")
       end
 
-      def entity_url(data)
+      def external_slug(data)
         "https://#{SOURCE}/job/#{data['url']}"
       end
 
-      def response(data)
+      def published_at(timestamp)
+        Time.at(timestamp / 1000.0).iso8601
+      end
+
+      def response(data) # rubocop:disable Metrics/AbcSize
         {
+          external_source: SOURCE,
+          external_slug: external_slug(data),
           title: data["title"],
-          image: image_url(data),
-          company_name: data["name"],
           category: data["category"],
-          seniority: data["seniority"],
-          salary: salary_details(data),
+          company_name: data["name"],
+          company_logo: company_logo(data),
+          seniority_level: data["seniority"][0],
+          salary_range: salary_range(data["salary"]),
+          salary_currency: data["salary"]["currency"],
+          contract_types: Array.new(1, data["salary"]["type"]),
           tags: extract_tags(data),
           remote: data["fullyRemote"],
-          entity_url: entity_url(data),
-          source: SOURCE
+          published_at: published_at(data["posted"])
         }
       end
     end
