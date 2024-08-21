@@ -11,5 +11,6 @@ FactoryBot.define do
     seniority_level { "Mid" }
     salary_range { "10000-20000" }
     salary_currency { "USD" }
+    tags { ["Ruby"] }
   end
 end
