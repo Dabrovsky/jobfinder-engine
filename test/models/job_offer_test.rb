@@ -42,4 +42,10 @@ class JobOfferTest < ActiveSupport::TestCase
 
     assert_equal "mid", job_offer.seniority_level
   end
+
+  test "normalizes tags" do
+    job_offer.tags = ["Ruby"]
+
+    assert_equal ["ruby"], job_offer.tags
+  end
 end

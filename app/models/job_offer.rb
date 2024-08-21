@@ -28,4 +28,5 @@ class JobOffer < ApplicationRecord
   validates :title, presence: true
 
   normalizes :category, :seniority_level, with: -> { _1&.squish&.downcase }
+  normalizes :tags, with: -> { _1&.map(&:downcase) }
 end
