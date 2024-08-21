@@ -13,6 +13,7 @@ gem "puma", ">= 5.0"
 gem "rails", "~> 7.1.3", ">= 7.1.3.3"
 gem "solid_queue"
 gem "tzinfo-data", platforms: %i[windows jruby]
+gem "whenever", require: false
 
 group :development, :test do
   gem "annotate"
@@ -24,4 +25,8 @@ end
 
 group :development do
   # gem "spring"
+end
+
+group :test do
+  gem "mocha"
 end
