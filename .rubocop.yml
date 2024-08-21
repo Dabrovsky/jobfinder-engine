@@ -4,13 +4,14 @@ require:
 AllCops:
   NewCops: enable
   Exclude:
-    - '.git/**/*'
-    - 'bin/*'
-    - 'config/**/*'
-    - 'tmp/**/*'
-    - 'vendor/**/*'
-    - 'config.ru'
-    - 'Rakefile'
+    - ".git/**/*"
+    - "bin/*"
+    - "config/**/*"
+    - "db/schema.rb"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "config.ru"
+    - "Rakefile"
   TargetRubyVersion: 3.3.1
   SuggestExtensions: false
 
