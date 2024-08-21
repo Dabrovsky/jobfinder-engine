@@ -9,7 +9,7 @@ module JobOffers
     ].freeze
 
     attribute :currency, String, default: "USD"
-    attribute :technologies, Array, default: []
+    attribute :technology, String
 
     def call
       job_offers
@@ -23,7 +23,7 @@ module JobOffers
 
     def providers
       PROVIDERS.map do |provider|
-        provider.new(currency:, technologies:)
+        provider.new(currency:, technology:)
       end
     end
   end

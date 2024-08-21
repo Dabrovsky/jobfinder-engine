@@ -10,7 +10,7 @@ module Providers
       attr_reader :provider
 
       setup do
-        @provider = Nofluffjobs.new(currency: "USD", technologies: [])
+        @provider = Nofluffjobs.new(currency: "USD")
         stub_nofluffjobs_data
       end
 

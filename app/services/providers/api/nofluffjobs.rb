@@ -20,7 +20,7 @@ module Providers
       def body_params
         {
           criteriaSearch: {
-            requirement: technologies
+            requirement: [technology]
           }
         }
       end
