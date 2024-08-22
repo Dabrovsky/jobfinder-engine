@@ -1,7 +1,18 @@
 # frozen_string_literal: true
 
-class JobOfferSerializer < Serializer
-  self.type = :job_offer
+class JobOfferSerializer
+  include JSONAPI::Serializer
 
-  fields :title, :image, :company_name, :category, :seniority, :salary, :tags, :remote, :entity_url, :source
+  attributes :external_source,
+             :external_slug,
+             :title,
+             :category,
+             :company_name,
+             :company_logo,
+             :seniority_level,
+             :salary_range,
+             :salary_currency,
+             :contract_types,
+             :tags,
+             :remote
 end

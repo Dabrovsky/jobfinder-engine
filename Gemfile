@@ -5,9 +5,9 @@ source "https://rubygems.org"
 ruby "3.3.1"
 
 gem "active_data"
-gem "blueprinter"
 gem "bootsnap", require: false
 gem "httparty"
+gem "jsonapi-serializer"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 gem "rack-cors"

@@ -3,61 +3,72 @@
 require "test_helper"
 
 class JobOfferSerializerTest < ActiveSupport::TestCase
-  attr_reader :input
+  attr_reader :job_offer, :attributes
 
   setup do
-    @input = {
-      title: "Job title",
-      image: "image_path",
-      company_name: "Company name",
-      category: "Category name",
-      seniority: "Mid",
-      salary: {
-        min: 0,
-        max: 100,
-        currency: "USD"
-      },
-      tags: ["Ruby"],
-      remote: true,
-      entity_url: "some-url",
-      source: "source"
+    @job_offer = create(:job_offer)
+    @attributes = {
+      external_slug: job_offer.external_slug,
+      external_source: job_offer.external_source,
+      title: job_offer.title,
+      category: job_offer.category,
+      company_name: job_offer.company_name,
+      company_logo: job_offer.company_logo,
+      seniority_level: job_offer.seniority_level,
+      salary_range: job_offer.salary_range,
+      salary_currency: job_offer.salary_currency,
+      tags: job_offer.tags,
+      contract_types: job_offer.contract_types,
+      remote: job_offer.remote
     }
   end
 
   test "correctly serializes object" do
     expected_hash = {
-      type: :job_offer,
-      attributes: input
+      data: {
+        id: job_offer.id,
+        type: :job_offer,
+        attributes:
+      }
     }
 
-    assert_equal expected_hash, JobOfferSerializer.render(input)
+    assert_equal expected_hash, JobOfferSerializer.new(job_offer).serializable_hash
   end
 
   test "correctly serializes collection" do
-    collection = [input, input]
+    job_offer_two = create(:job_offer)
+    collection = JobOffer.all
 
-    expected_hash = [
-      {
-        type: :job_offer,
-        attributes: input
-      },
-      {
-        type: :job_offer,
-        attributes: input
-      }
-    ]
-
-    assert_equal expected_hash, JobOfferSerializer.render(collection)
-  end
-
-  test "correctly serializes only whitelisted fields" do
-    combined_input = input.merge(additional_field: "test")
-
-    expected_hash = {
-      type: :job_offer,
-      attributes: input
+    attributes2 = {
+      external_slug: job_offer_two.external_slug,
+      external_source: job_offer_two.external_source,
+      title: job_offer_two.title,
+      category: job_offer_two.category,
+      company_name: job_offer_two.company_name,
+      company_logo: job_offer_two.company_logo,
+      seniority_level: job_offer_two.seniority_level,
+      salary_range: job_offer_two.salary_range,
+      salary_currency: job_offer_two.salary_currency,
+      tags: job_offer_two.tags,
+      contract_types: job_offer_two.contract_types,
+      remote: job_offer_two.remote
     }
 
-    assert_equal expected_hash, JobOfferSerializer.render(combined_input)
+    expected_hash = {
+      data: [
+        {
+          id: job_offer.id,
+          type: :job_offer,
+          attributes:
+        },
+        {
+          id: job_offer_two.id,
+          type: :job_offer,
+          attributes: attributes2
+        }
+      ]
+    }
+
+    assert_equal expected_hash, JobOfferSerializer.new(collection, is_collection: true).serializable_hash
   end
 end

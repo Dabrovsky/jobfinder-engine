@@ -6,7 +6,10 @@ module Api
       def index
         job_offers = JobOffers.fetch(input: search_params)
 
-        render json: JobOfferSerializer.render(job_offers)
+        render json: JobOfferSerializer.new(
+          job_offers,
+          is_collection: true
+        ).serializable_hash
       end
 
       private
