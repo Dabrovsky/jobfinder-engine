@@ -5,36 +5,33 @@ require "test_helper"
 module Api
   module V1
     class JobOffersControllerTest < ActionDispatch::IntegrationTest
-      include MockedDataHelpers
+      attr_reader :job_offer
 
       setup do
-        stub_nofluffjobs_data
+        @job_offer = create(:job_offer)
       end
 
-      # TODO: Temporary disabled till data from the database will be retrived instead
-      # test "GET api/v1/job_offers returns correct response" do
-      #   expected_response = {
-      #     title: "Job title",
-      #     image: "https://static.nofluffjobs.com/image_path",
-      #     company_name: "Company name",
-      #     category: "Category name",
-      #     seniority: "Mid",
-      #     salary: {
-      #       min: 0,
-      #       max: 100,
-      #       currency: "USD"
-      #     },
-      #     tags: ["Ruby"],
-      #     remote: true,
-      #     entity_url: "https://nofluffjobs.com/job/some-url",
-      #     source: "nofluffjobs.com"
-      #   }
+      test "GET api/v1/job_offers returns correct response" do
+        expected_response = {
+          external_slug: job_offer.external_slug,
+          external_source: job_offer.external_source,
+          title: job_offer.title,
+          category: job_offer.category,
+          company_logo: job_offer.company_logo,
+          company_name: job_offer.company_name,
+          seniority_level: job_offer.seniority_level,
+          salary_range: job_offer.salary_range,
+          salary_currency: job_offer.salary_currency,
+          contract_types: job_offer.contract_types,
+          tags: job_offer.tags,
+          remote: job_offer.remote
+        }
 
-      #   get api_v1_job_offers_path
+        get api_v1_job_offers_path
 
-      #   assert_response :success
-      #   assert_equal expected_response, json_response[0][:attributes]
-      # end
+        assert_response :success
+        assert_equal expected_response, json_response[:data][0][:attributes]
+      end
     end
   end
 end
