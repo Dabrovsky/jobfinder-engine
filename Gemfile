@@ -10,6 +10,7 @@ gem "bootsnap", require: false
 gem "httparty"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
+gem "rack-cors"
 gem "rails", "~> 7.1.3", ">= 7.1.3.3"
 gem "solid_queue"
 gem "tzinfo-data", platforms: %i[windows jruby]
