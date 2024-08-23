@@ -29,4 +29,6 @@ class JobOffer < ApplicationRecord
 
   normalizes :category, :seniority_level, with: -> { _1&.squish&.downcase }
   normalizes :tags, with: -> { _1&.map(&:downcase) }
+
+  scope :active, -> { where(updated_at: 2.hours.ago..) }
 end

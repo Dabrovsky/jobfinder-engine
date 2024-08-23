@@ -18,7 +18,7 @@ module JobOffers
     private
 
     def scope
-      @scope || JobOffer.all
+      @scope || JobOffer.active
     end
 
     def search_by_tags

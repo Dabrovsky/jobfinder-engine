@@ -31,3 +31,7 @@ Metrics/MethodLength:
 Metrics/BlockLength:
   Exclude:
     - "test/**/*"
+
+Metrics/ClassLength:
+  Exclude:
+    - "test/**/*"
