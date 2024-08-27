@@ -6,15 +6,23 @@ module JobOffers
 
     attribute :currency, String, default: "USD"
     attribute :technologies, Array, default: []
+    attribute :seniority, Array, default: []
+    attribute :contracts, Array, default: []
+    attribute :keywords, Array, default: []
 
     def call
-      job_offers
+      JobOffers::FetchQuery.search(**input)
     end
 
     private
 
-    def job_offers
-      JobOffer.where("tags @> ?", "{#{technologies.join(',')}}")
+    def input
+      {
+        technologies:,
+        seniority:,
+        contracts:,
+        keywords:
+      }
     end
   end
 end
