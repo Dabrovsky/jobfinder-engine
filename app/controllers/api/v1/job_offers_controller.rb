@@ -4,11 +4,19 @@ module Api
   module V1
     class JobOffersController < ApplicationController
       def index
-        job_offers = JobOffers.fetch(input: search_params)
+        response = JobOffers.fetch(input: search_params)
+        @pagy, records = pagy(response)
 
         render json: JobOfferSerializer.new(
-          job_offers,
-          is_collection: true
+          records,
+          is_collection: true,
+          meta: {
+            pagination: {
+              total_items: @pagy.count,
+              per_page: @pagy.limit,
+              current_page: @pagy.page
+            }
+          }
         ).serializable_hash
       end
 
