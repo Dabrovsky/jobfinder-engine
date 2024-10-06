@@ -8,6 +8,7 @@ gem "active_data"
 gem "bootsnap", require: false
 gem "httparty"
 gem "jsonapi-serializer"
+gem "pagy"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 gem "rack-cors"
